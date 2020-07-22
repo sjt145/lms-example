@@ -16,7 +16,6 @@ const Login = ({ setIsAuthenticated }) => {
     const value = e.target.value;
     setValue({ [name]: value })
     validateField(name, value)
-    localStorage.setItem('username', value)
   }
 
   const validateField = (fieldName, value) => {
@@ -57,7 +56,9 @@ const Login = ({ setIsAuthenticated }) => {
         <div className={`form-group ${errorClass(formErrors.password)}`}>
           <Input required={true} type="password" name="password" value={value.password} text="Password" onChange={(val) => handleChange(val)} />
         </div>
-        <PrimaryButton text="Login" type='submit' disabled={!formvalid} />
+        <PrimaryButton text="Login" type='submit' disabled={!formvalid} onClick={() => {
+          localStorage.setItem('username', value.email)
+        }} />
         <SecondayButton text="Reset" />
         <Formerrors formErrors={formErrors} />
       </form>
