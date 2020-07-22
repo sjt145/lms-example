@@ -4,27 +4,21 @@ import { Input, H1, PrimaryButton, SecondayButton, Formerrors } from '../../comp
 import './Login.css';
 
 const Login = ({ setIsAuthenticated }) => {
-  const [username, setemail] = useState('')
-  const [password, setpassword] = useState('')
+  const [value, setValue] = useState({})
   const [formErrors, setFormerrors] = useState(
     { email: '', password: '' }
   )
   const [emailvalid, setemailvalid] = useState(false)
   const [passwordvalid, setpasswordvalid] = useState(false)
   const [formvalid, setformvalid] = useState(false)
-  const handleusername = (e) => {
+  const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setemail(value)
-    localStorage.setItem('username',value)
+    setValue({ [name]: value })
     validateField(name, value)
+    localStorage.setItem('username', value)
   }
-  const handlepassword = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setpassword(value)
-    validateField(name, value)
-  }
+
   const validateField = (fieldName, value) => {
     let fieldValidationErrors = formErrors;
     let emailValid = emailvalid;
@@ -58,12 +52,12 @@ const Login = ({ setIsAuthenticated }) => {
       <form>
         <H1 text="Please Login" />
         <div className={`form-group ${errorClass(formErrors.email)}`}>
-          <Input required={true} type="email" name="email" value={username} text="User Name" autoFocus={true} onChange={(val) => handleusername(val)} />
+          <Input required={true} type="email" name="email" value={value.email} text="User Name" autoFocus={true} onChange={(val) => handleChange(val)} />
         </div>
         <div className={`form-group ${errorClass(formErrors.password)}`}>
-          <Input required={true} type="password" name="password" value={password} text="Password" onChange={(val) => handlepassword(val)} />
+          <Input required={true} type="password" name="password" value={value.password} text="Password" onChange={(val) => handleChange(val)} />
         </div>
-        <PrimaryButton text="Login" type='submit' disabled={!formvalid}/>
+        <PrimaryButton text="Login" type='submit' disabled={!formvalid} />
         <SecondayButton text="Reset" />
         <Formerrors formErrors={formErrors} />
       </form>
