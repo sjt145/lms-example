@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 
 import { InputGroup, FormControl, DropdownButton, Dropdown } from '../BootstrapWrap';
 
-const DropdownWrap = ({ title, options, setSelectedValue }) => {
+const DropdownWrap = ({ name, title, options, setSelectedValue, onChange }) => {
   const [value, setValue] = useState('');
 
   const handleClick = (e) => {
     setValue(e.target.innerText);
     setSelectedValue && setSelectedValue(Number(e.target.id));
+    onChange(e.target.name, Number(e.target.id));
   }
 
   return <InputGroup className="mb-3">
@@ -19,7 +20,7 @@ const DropdownWrap = ({ title, options, setSelectedValue }) => {
     >
       {
         (options || []).map(option => {
-          return <Dropdown.Item href="#" onClick={(e) => handleClick(e)} id={option.id}> {option.name}</Dropdown.Item>
+          return <Dropdown.Item name={name} href="#" onClick={(e) => handleClick(e)} id={option.id}> {option.name}</Dropdown.Item>
         })
       }
     </DropdownButton>

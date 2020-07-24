@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import NavbarWrap from '../../components/Navbar/Navbar'
 import Dashboard from './Dashboard'
-import Student from './Student'
+import Student from './Student/Student'
 import Course from './Course/Course'
 
 const Home = ({ setIsAuthenticated }) => {

@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Input, DropdownWrap } from '../../../components';
 
-const Create = () => {
+const Create = ({ setNewCourse }) => {
   const [categoryId, setCategoryId] = useState(0);
   const [course, setCourse] = useState({});
 
@@ -24,18 +24,23 @@ const Create = () => {
     setCategoryId(value);
   }
 
-  const setCourseObject = (e) => {
-    const key = e.target.name;
-    const value = e.target.value;
+  useEffect(() => {
+    setNewCourse(course);
+  }, [course])
 
+  const setCourseObject = (key, value) => {
     setCourse({ ...course, [key]: value });
   }
 
+  const filterSubCategroy = () => {
+    return subCategories.filter(subCategory => subCategory.categoryId === categoryId);
+  }
+
   return <div className="createCourse">
-    <Input name="courseName" text="Course Name" autoFocus={true} onChange={(e) => setCourseObject(e)} />
-    <DropdownWrap title="Category" options={categories} setSelectedValue={setSelectedValue} />
-    <DropdownWrap title="Sub Category" options={subCategories.filter(subCategory => subCategory.categoryId === categoryId)} />
-    <Input name="fee" text="Fees" onChange={(e) => setCourseObject(e)} />
+    <Input name="courseName" text="Course Name" autoFocus={true} onChange={(e) => setCourseObject(e.target.name, e.target.value)} />
+    <DropdownWrap name="category" title="Category" options={categories} setSelectedValue={setSelectedValue} onChange={(key, value) => setCourseObject(key, value)} />
+    <DropdownWrap name="subCategory" title="Sub Category" options={filterSubCategroy()} onChange={(key, value) => setCourseObject(key, value)} />
+    <Input name="fees" text="Fees" onChange={(e) => setCourseObject(e.target.name, e.target.value)} />
   </div>
 }
 
