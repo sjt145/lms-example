@@ -6,7 +6,8 @@ import SecondayButton from './Button/SecondayButton';
 import ModalWrap from './Modal/Modal';
 import DropdownWrap from './Dropdown/Dropdown';
 import Formerrors from './Formerror/Formerror';
-import RadioButton from './RadioButton/RadioButton'
+import RadioButton from './RadioButton/RadioButton';
+import TableWrap from './Table/Table';
 
 export {
   Input,
@@ -17,5 +18,6 @@ export {
   ModalWrap,
   DropdownWrap,
   Formerrors,
-  RadioButton
+  RadioButton,
+  TableWrap,
 }

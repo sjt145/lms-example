@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 import { Input, DropdownWrap, RadioButton } from '../../../components';
-const Create = ({ newStudent }) => {
-  const [student, setStudent] = useState({})
+const Create = ({ setnewStudent,newStudent }) => {
+  const [student, setStudent] = useState(newStudent)
   useEffect(() => {
-    newStudent(student)
+    setnewStudent(student)
   }, [student])
   const cities = [
     { id: 1, name: 'Toronto' },
@@ -19,13 +18,13 @@ const Create = ({ newStudent }) => {
     setStudent({ ...student, [key]: value });
   }
   return <div className="student">
-    <Input name="firstName" text="First Name" autoFocus={true} onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
-    <Input name="lastName" text="Last Name" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
-    <RadioButton onclick={(key, value) => setstudentDetails(key, value)} />
-    <Input name="userName" text="User Name" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
-    <Input name="password" text="Password" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
-    <Input name="email" text="Email" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
-    <DropdownWrap name="city" title="City" options={cities} onChange={(key, value) => setstudentDetails(key, value)} />
+    <Input name="firstName" value={student.firstName} text="First Name" autoFocus={true} onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
+    <Input name="lastName" value={student.lastName} text="Last Name" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
+    <RadioButton checked={student.gender} onclick={(key, value) => setstudentDetails(key, value)} />
+    <Input value={student.userName} name="userName" text="User Name" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
+    <Input  name="password" text="Password" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
+    <Input value={student.email} name="email" text="Email" onChange={(e) => setstudentDetails(e.target.name, e.target.value)} />
+    <DropdownWrap value={student.city} name="city" title="City" options={cities} onChange={(key, value) => setstudentDetails(key, value)} />
   </div>
 }
 

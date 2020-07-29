@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 import { InputGroup, FormControl, DropdownButton, Dropdown } from '../BootstrapWrap';
 
-const DropdownWrap = ({ name, title, options, setSelectedValue, onChange }) => {
-  const [value, setValue] = useState('');
+const DropdownWrap = ({ name, title, options, setSelectedValue, onChange,value }) => {
+  const dropdownText=options.filter(option=>option.id===value)
+  const [selectedvalue, setValue] = useState((dropdownText[0]||[]).name);
 
   const handleClick = (e) => {
     setValue(e.target.innerText);
@@ -24,7 +25,7 @@ const DropdownWrap = ({ name, title, options, setSelectedValue, onChange }) => {
         })
       }
     </DropdownButton>
-    <FormControl aria-describedby="basic-addon1" value={value} />
+    <FormControl aria-describedby="basic-addon1" value={selectedvalue} />
   </InputGroup >
 }
 
