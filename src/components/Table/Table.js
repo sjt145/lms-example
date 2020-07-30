@@ -13,6 +13,7 @@ const TableWrap = ({ tableHeads, tableRows, setLgShow, key }) => {
             {(tableRows || []).map((tablerows) => {
                 return <tr>
                     {Object.values(tablerows).map((value) => {
+                        // console.log(value)
                         return <td>{value}</td>;
                     })}
                     <td><PrimaryButton text='Edit' onClick={() => setLgShow(tablerows)} /></td>

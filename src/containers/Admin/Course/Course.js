@@ -73,7 +73,7 @@ const Course = () => {
       Course <br /> <br />
       <PrimaryButton text="Create New Course" onClick={() => createCourse()} />
       <div style={{ maxWidth: '600px', margin: '0 auto', marginTop: '10px' }}>
-        <Input name='filter Name' text='Filter Search' onChange={(val) => filterCourse(val)} />
+        <Input name='FilterbyName' text='Filter by Name' onChange={(val) => filterCourse(val)} />
       </div>
       <List listOfCourses={listOfCourses} lgShow={lgShow} setLgShow={(editcourse) => editCourse(editcourse)} />
       <ModalWrap isCreate={isCreate} editSudmitcourse={editSudmitcourse} title="Create New Course" sumbit={sumbitCourse} lgShow={lgShow} setLgShow={setLgShow}>
