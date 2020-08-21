@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import {TableWrap} from '../../../components'
-const List = ({listOfCourses,setLgShow,lgShow}) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { getCourses } from '../../../store/actions/course';
+const List = ({onClick}) => {
   // const [course,setCourses]=useState([
   //   {
   //     id:1,
@@ -10,9 +12,16 @@ const List = ({listOfCourses,setLgShow,lgShow}) => {
   //     fees:1000
   //   }
   // ])
+  const dispatch = useDispatch();
 
-  const tableHeader=['Id','Name','Category','SubCategory','Fees','Actions']
-  return <TableWrap tableHeads={tableHeader} tableRows={listOfCourses} setLgShow={setLgShow} />
+  const listOfCourses = useSelector(state => state.courseState.list)
+
+  useEffect(() => {
+    dispatch(getCourses())
+  }, [])
+
+  const tableHeader=['Id','Category','CourseName','Fees','SubCategory','Actions']
+  return <TableWrap tableHeads={tableHeader} tableRows={listOfCourses} onClick={onClick} />
 }
 
 export default List;

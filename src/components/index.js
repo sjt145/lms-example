@@ -8,6 +8,7 @@ import DropdownWrap from './Dropdown/Dropdown';
 import Formerrors from './Formerror/Formerror';
 import RadioButton from './RadioButton/RadioButton';
 import TableWrap from './Table/Table';
+import Loader from './Loader/Loader';
 
 export {
   Input,
@@ -20,4 +21,5 @@ export {
   Formerrors,
   RadioButton,
   TableWrap,
+  Loader
 }
